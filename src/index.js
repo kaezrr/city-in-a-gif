@@ -9,10 +9,22 @@ const mainBody = document.querySelector('main');
 
 cityForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    showLoading();
     const data = await getWeather(location.value, unit.value);
-    if (!data.hasOwnProperty('address')) return;
+    mainBody.classList.toggle('loading');
+    if (!data.hasOwnProperty('address')) {
+        mainBody.replaceChildren();
+        return;
+    }
     constructPage(data);
 });
+
+const showLoading = () => {
+    const loading = document.createElement('h1');
+    loading.textContent = 'Loading...';
+    mainBody.replaceChildren(loading);
+    mainBody.classList.toggle('loading');
+};
 
 const createP = (content, id) => {
     const p = document.createElement('p');
@@ -42,7 +54,7 @@ function constructPage(data) {
     h1.textContent = data.address;
     const img = document.createElement('img');
     img.src = data.displayUrl;
-    const div = document.querySelector('div');
+    const div = document.createElement('div');
     div.replaceChildren(
         createP(data.description, 'desc'),
         createP(

@@ -30,14 +30,21 @@ button {
 body {
     background-color: #aab99a;
     margin: 0px;
+    min-height: 100vh;
 }
 
 main {
     margin: 0 2%;
     justify-items: center;
     display: grid;
-    grid-template-columns: 2fr 3fr 3fr;
-    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 2fr 2fr 3fr;
+    grid-template-rows: 1fr 40vh;
+}
+
+main.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main > img,
@@ -60,7 +67,7 @@ main > h2 {
 }
 
 main > img {
-    height: auto;
+    height: 100%;
     width: 80%;
 }
 
